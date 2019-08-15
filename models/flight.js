@@ -2,21 +2,23 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var flightSchema = new Schema({
-    arline: {
+    airline: {
         type: String,
-        enum: ['American', 'Southwest', 'United']
+        enum: ['American', 'Southwest', 'United'],
+        required: true
     },
     flightNo: {
         type: Number, 
         min: 10,
-        max: 9999
+        max: 9999,
+        required: true
     },
     departs: {
-        type: Date,
-        default: function(){
-            return new Date().getFullYear();
-        } 
+        type: Date, 
+        default: Date.now
     }
+}, {
+    timestamps: true
 });
 
-module.exports = mongoose.model('Movie', movieSchema);
+module.exports = mongoose.model('Flight', flightSchema);
