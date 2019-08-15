@@ -4,7 +4,14 @@ module.exports = {
     index, 
     new: newFlight,
     create,
+    show
 }
+
+function show(req, res) {
+    Flights.findById(req.params.id, function (err, flight) {
+        res.render('flights/show', {flight});
+    });
+};
 
 function create(req, res) {
     for (let key in req.body){
